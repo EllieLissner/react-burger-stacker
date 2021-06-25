@@ -20,17 +20,19 @@ const burgerIngredients = [
 
 const App = () => {
   //the joe notes
-  
+  //const addedIngredients = useState([])[0]
+  //const setAddedIngredients = useState([])[1]
   const[addedIngredients, setAddedIngredients] = useState([])
+
+  //const arr = ['apple', 'banana', 'pear']
+  //const [apple, banana, pear] = arr
   
   
   const addToBurger = (e) => {
     const newIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
     //let updatedAddedIngredients = this.state.addedIngredients.concat(newIngredient)
     const updatedAddedIngredients = [...addedIngredients, newIngredient]
-    setAddedIngredients(
-      updatedAddedIngredients
-    )
+    setAddedIngredients(updatedAddedIngredients)
   }
 
   // clearBurger = (e) => {
@@ -40,9 +42,7 @@ const App = () => {
   // }
 
   const clearBurger = () => {
-    setAddedIngredients(
-       []
-    )
+    setAddedIngredients([])
   }
   //goals:
   //get val of clicked ingredient and color
