@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+
 import Ingredients from './Ingredients'
  
-export default class Buger extends Component {
-    render() {
-        let ingredients = this.props.addedIngredients.reverse().map((item, index) => (
+const Burger = (props) => {
+    
+        let ingredients = props.addedIngredients.map((item, index) => (
             <li>
                 <Ingredients
                     name={item.name}
@@ -14,8 +14,10 @@ export default class Buger extends Component {
         ))
         return(
             <ul>
-                {ingredients}
+                {ingredients.reverse()}
             </ul>
         )
-    }
+   
 }
+
+export default  Burger

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import { useState } from 'react'
 import IngredientList from './IngredientList'
 import BurgerHome from './BurgerHome'
 
@@ -18,27 +18,19 @@ const burgerIngredients = [
 ]
 
 
-export default class App extends Component {
+const App = () => {
   //the joe notes
-  constructor(props) {
-    super(props);
-
-    
-
-    this.clearBurger = this.clearBurger.bind(this);
-  }
-
-  state = {
-    addedIngredients: []
-  }
   
-  addToBurger = (e) => {
+  const[addedIngredients, setAddedIngredients] = useState([])
+  
+  
+  const addToBurger = (e) => {
     const newIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
     //let updatedAddedIngredients = this.state.addedIngredients.concat(newIngredient)
-    const updatedAddedIngredients = [...this.state.addedIngredients, newIngredient]
-    this.setState({
-      addedIngredients: updatedAddedIngredients
-    })
+    const updatedAddedIngredients = [...addedIngredients, newIngredient]
+    setAddedIngredients(
+      updatedAddedIngredients
+    )
   }
 
   // clearBurger = (e) => {
@@ -47,10 +39,10 @@ export default class App extends Component {
   //   })
   // }
 
-  clearBurger() {
-    this.setState({
-      addedIngredients: []
-    })
+  const clearBurger = () => {
+    setAddedIngredients(
+       []
+    )
   }
   //goals:
   //get val of clicked ingredient and color
@@ -61,12 +53,12 @@ export default class App extends Component {
   //we will use concat to sidestep the mutation situation
 
 
-  render() {
+  
     return(
       <div style={{display: "flex", alignItems:"flex-end"}}>
-      <h1><IngredientList ingredients={burgerIngredients} addToBurger={this.addToBurger}/></h1>
-      <h1><BurgerHome addedIngredients={this.state.addedIngredients} clearBurger={this.clearBurger} /></h1>
+      <h1><IngredientList ingredients={burgerIngredients} addToBurger={addToBurger}/></h1>
+      <h1><BurgerHome addedIngredients={addedIngredients} clearBurger={clearBurger} /></h1>
       </div>
     )
-  }
 }
+export default App
